@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="RRMS:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RRMS_jar</output-path>
+    <root id="archive" name="RRMS.jar">
+      <element id="module-output" name="RRMS" />
+    </root>
+  </artifact>
+</component>

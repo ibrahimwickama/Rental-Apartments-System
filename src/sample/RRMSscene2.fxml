@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="borderPan" maxHeight="950.0" maxWidth="-Infinity"
+            minHeight="778.0" minWidth="895.0" prefHeight="900.0" prefWidth="1169.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="sample.Controller">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar prefHeight="17.0" prefWidth="600.0">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Session">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close"/>
+                                <MenuItem fx:id="logOu" mnemonicParsing="false" onAction="#signOut" text="LogOut"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete"/>
+                                <MenuItem mnemonicParsing="false" onAction="#addAptmnt" text="Add appartment"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox prefHeight="29.0" prefWidth="600.0" spacing="10.0">
+                    <children>
+                        <Label prefHeight="17.0" prefWidth="73.0" text="  Appartment"/>
+                        <ComboBox id="comboBox" fx:id="combBoxApp" prefWidth="150.0">
+
+                        </ComboBox>
+
+                    </children>
+                </HBox>
+                <HBox spacing="15.0">
+                    <children>
+                        <Button fx:id="regCustomButton" mnemonicParsing="false" onAction="#regCustomer"
+                                text="Register Customer"/>
+                        <Button fx:id="customerViewButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                                onAction="#customerView" text="Customers"/>
+                        <Button fx:id="roomsAvailableButton" layoutX="62.0" layoutY="10.0" mnemonicParsing="false"
+                                onAction="#availableRooms" text="Available Rooms"/>
+                        <Button layoutX="114.0" layoutY="10.0" mnemonicParsing="false" text="Rooms Status"/>
+                    </children>
+                </HBox>
+                <Separator prefHeight="7.0" prefWidth="600.0"/>
+            </children>
+        </VBox>
+    </top>
+    <bottom>
+        <Label prefHeight="17.0" prefWidth="598.0" text="Loged as: " BorderPane.alignment="BOTTOM_LEFT"/>
+    </bottom>
+</BorderPane>
