@@ -182,7 +182,7 @@ public class Controller implements Initializable {
                         .observableArrayList(sampulii);
                 combBoxApp.setItems(appartmentList);
             }
-            con.close();
+            //con.close();
             stat.close();
             rs.close();
 
