@@ -8,38 +8,49 @@
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <schema name="" catalog=""/>
     <table name="Admin" schema="" catalog="" type="TABLE">
-      <column name="First" sqlType="NAME TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="Last" sqlType="NAME TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="Email" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="Phone" sqlType="NO INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="Username" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="first_name" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="username" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="phone"/>
     </table>
-    <table name="RegUser" schema="" catalog="" type="TABLE">
-      <column name="firstName" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+    <table name="Contract" schema="" catalog="" type="TABLE">
+      <column name="con_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="contractType" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="entryDate" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="expireDate" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="con_id"/>
+    </table>
+    <table name="Customers" schema="" catalog="" type="TABLE">
+      <column name="firstName" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="lastName" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="email" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="phone" sqlType="INT(20)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="dateOfBirth" sqlType="DATE" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="age" sqlType="INT(5)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="sex" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="appartment" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="roomType" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="roomNo" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="fee" sqlType="INT(10)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="contract" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="entryDate" sqlType="DATE" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="expireDate" sqlType="DATE" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="sex" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="phone"/>
+    </table>
+    <table name="Rooms" schema="" catalog="" type="TABLE">
+      <column name="room_no" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="roomType" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="roomFee" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="room_no"/>
     </table>
     <table name="appartments" schema="" catalog="" type="TABLE">
-      <column name="appartment_name" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="country" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="city" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="roomTotal" sqlType="INT(5)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="masterRooms" sqlType="INT(5)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="singleRooms" sqlType="INT(5)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="masterRoomFee" sqlType="INT(10)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="singleRoomFee" sqlType="INT(10)" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="appartment_name" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="roomTotal" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="masterRooms" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="singleRooms" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="appartment_name"/>
+    </table>
+    <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
+      <column name="name" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="seq" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
     </table>
   </data-source>
 </component>

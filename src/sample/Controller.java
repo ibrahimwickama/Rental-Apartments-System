@@ -191,20 +191,20 @@ public class Controller implements Initializable {
             System.out.println("Error on Building Data");
         }
         // section for loading customer information for database to application table view
-        ResultSet rs;
+        ResultSet rst;
         try {
 
             con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
             stat = con.createStatement();
             data = FXCollections.observableArrayList();
-            rs = stat.executeQuery("select * from RegUser");
-            while (rs.next()) {
-                data.add(new UserData(rs.getString("firstName"), rs.getString("lastName"),
-                        rs.getString("email"), rs.getString("phone"),
-                        rs.getString("sex"), rs.getString("appartment"),
-                        rs.getString("roomType"), rs.getString("roomNo"),
-                        rs.getInt("fee"), rs.getString("contract"),
-                        rs.getString("entryDate"), rs.getString("expireDate")));
+            rst = stat.executeQuery("select * from RegUser");
+            while (rst.next()) {
+                data.add(new UserData(rst.getString("firstName"), rst.getString("lastName"),
+                        rst.getString("email"), rst.getString("phone"),
+                        rst.getString("sex"), rst.getString("appartment"),
+                        rst.getString("roomType"), rst.getString("roomNo"),
+                        rst.getInt("fee"), rst.getString("contract"),
+                        rst.getString("entryDate"), rst.getString("expireDate")));
             }
 
             usFName.setCellValueFactory(new PropertyValueFactory("firstName"));
