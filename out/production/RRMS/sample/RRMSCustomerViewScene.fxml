@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1169.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="sample.Controller">
+    <children>
+        <TableView fx:id="customerTable" prefHeight="778.0" prefWidth="1169.0">
+            <columns>
+                <TableColumn fx:id="usIndexNo" prefWidth="32.0" text="No"/>
+                <TableColumn fx:id="usFName" prefWidth="97.0" text="First Name"/>
+                <TableColumn fx:id="usLName" prefWidth="99.0" text="Last Name"/>
+                <TableColumn fx:id="usEmail" prefWidth="178.0" text="Email"/>
+                <TableColumn fx:id="usPhoneNo" prefWidth="127.0" text="Phone No"/>
+                <TableColumn fx:id="usGender" prefWidth="60.0" text="Gender"/>
+                <TableColumn fx:id="usAppartment" prefWidth="109.0" text="Appartment"/>
+                <TableColumn fx:id="usRoomType" prefWidth="95.0" text="Room Type"/>
+                <TableColumn fx:id="usRoomNo" prefWidth="62.0" text="Room No"/>
+                <TableColumn fx:id="usFee" prefWidth="76.0" text="Fee"/>
+                <TableColumn fx:id="usContract" text="Contract"/>
+                <TableColumn fx:id="usStartDate" prefWidth="87.0" text="Start Date"/>
+                <TableColumn fx:id="usEndDate" prefWidth="78.0" text="End Date"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="778.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8">
+    <children>
+        <TableView prefHeight="778.0" prefWidth="324.0">
+            <columns>
+                <TableColumn prefWidth="148.0" text="Appartment"/>
+                <TableColumn prefWidth="106.0" text="Room Type"/>
+                <TableColumn prefWidth="69.0" text="Room No"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

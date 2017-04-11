@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8"
+          fx:controller="sample.Controller">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" stylesheets="@Scene.css">
+         <children>
+            <GridPane alignment="CENTER" layoutX="127.0" layoutY="111.0" prefHeight="157.0" prefWidth="346.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="105.0" text="     User Name"/>
+                  <Label prefHeight="17.0" prefWidth="102.0" text="     Password" GridPane.rowIndex="1"/>
+                  <PasswordField layoutX="118.0" layoutY="18.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                  <TextField GridPane.columnIndex="1"/>
+                  <Button fx:id="logButton" mnemonicParsing="false" onAction="#loginClick" text="LogIn"
+                          GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                  <Button fx:id="signButton" layoutX="118.0" layoutY="96.0" mnemonicParsing="false"
+                          onAction="#signupClick" text="SignUp" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                  <Label prefHeight="17.0" prefWidth="144.0" text="Create a new Account." GridPane.columnIndex="1"
+                         GridPane.rowIndex="3"/>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="80.0"/>
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               </rowConstraints>
+            </GridPane>
+            <Label layoutX="159.0" layoutY="369.0" prefHeight="17.0" prefWidth="358.0"
+                   text="WickerLabs.   Rental Rooms Management System"/>
+            <ImageView fitHeight="109.0" fitWidth="105.0" layoutX="8.0" layoutY="4.0" preserveRatio="true">
+               <image>
+                  <Image url="@../WickerLabs.jpg"/>
+               </image>
+            </ImageView>
+            <Label layoutX="139.0" layoutY="40.0" opacity="0.83" text="WickerLabs;">
+               <font>
+                  <Font name="Arial Black" size="48.0"/>
+               </font>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow/>
+                     </bumpInput>
+                     <light>
+                        <!--<Light.Distant />-->
+                     </light>
+                  </Lighting>
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints/>
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints/>
+   </rowConstraints>
+</GridPane>
