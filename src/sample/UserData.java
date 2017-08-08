@@ -11,6 +11,7 @@ import javafx.beans.property.StringProperty;
 //used on loading data to TableViews on the application
 public class UserData {
 
+
     private StringProperty firstName = new SimpleStringProperty();
     private StringProperty lastName = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
@@ -26,6 +27,7 @@ public class UserData {
 
 
     public UserData(String firstName, String lastName, String email, String phone, String sex, String appartment, String roomType, String roomNo, int fee, String contract, String entryDate, String expireDate) {
+
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);

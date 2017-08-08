@@ -140,7 +140,8 @@ public class Controller implements Initializable {
         //shows appartment name loccations on Customer Registration ComboBox form list is fetched from database.
         try {
             List simple = new ArrayList<>();
-            con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
+            // con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
+            con = DBConnect.getConnected();
             stat = con.createStatement();
             ResultSet rs = stat.executeQuery("select * from appartments");
             while (rs.next()) {
@@ -151,7 +152,7 @@ public class Controller implements Initializable {
                         .observableArrayList(simple);
                 combBoxApp2.setItems(appartmentList);
             }
-            con.close();
+            //con.close();
             stat.close();
             rs.close();
 
@@ -182,9 +183,10 @@ public class Controller implements Initializable {
                         .observableArrayList(sampulii);
                 combBoxApp.setItems(appartmentList);
             }
-            //con.close();
+
             stat.close();
             rs.close();
+            //con.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -193,18 +195,27 @@ public class Controller implements Initializable {
         // section for loading customer information for database to application table view
         ResultSet rst;
         try {
-
-            con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
+            //con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
+            con = DBConnect.getConnected();
             stat = con.createStatement();
             data = FXCollections.observableArrayList();
-            rst = stat.executeQuery("select * from RegUser");
+            String queryCustomers = "select Customers.firstName, Customers.lastName, Customers.email, Customers.phone,\n" +
+                    "Customers.sex, Customers.appartment_name, Rooms.roomType, Rooms.room_no, Rooms.roomFee, Contract.contractType, Contract.entryDate, Contract.expireDate\n" +
+                    "from Customers\n" +
+                    "join Rooms on Rooms.customer_id = Customers.customer_id\n" +
+                    "join Contract on Contract.customer_id = Customers.customer_id";
+
+            rst = stat.executeQuery(queryCustomers);
+
             while (rst.next()) {
-                data.add(new UserData(rst.getString("firstName"), rst.getString("lastName"),
-                        rst.getString("email"), rst.getString("phone"),
-                        rst.getString("sex"), rst.getString("appartment"),
-                        rst.getString("roomType"), rst.getString("roomNo"),
-                        rst.getInt("fee"), rst.getString("contract"),
-                        rst.getString("entryDate"), rst.getString("expireDate")));
+//
+                data.add(new UserData(rst.getString(1), rst.getString(2),
+                        rst.getString(3), rst.getString(4),
+                        rst.getString(5), rst.getString(6),
+                        rst.getString(7), rst.getString(8),
+                        rst.getInt(9), rst.getString(10),
+                        rst.getString(11), rst.getString(12)));
+
             }
 
             usFName.setCellValueFactory(new PropertyValueFactory("firstName"));
@@ -222,16 +233,19 @@ public class Controller implements Initializable {
 
             customerTable.setItems(data);
 
+            //con.close();
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data On Customers");
         }
+
     }
 
     // Method for adding new Appartments to the DB
     public void addAppartment() throws SQLException {
 
-        String query = "insert into appartments values(?,?,?,?,?,?,?,?)";
+        String query = "insert into appartments values(?,?,?,?,?,?)";
         con = null;
         prep = null;
 
@@ -246,11 +260,10 @@ public class Controller implements Initializable {
             prep.setInt(4, Integer.parseInt(appartRoomsTotal.getText()));
             prep.setInt(5, Integer.parseInt(appartmastroomTotal.getText()));
             prep.setInt(6, Integer.parseInt(appartSingleroomTotal.getText()));
-            prep.setInt(7, Integer.parseInt(appartmastroomFee.getText()));
-            prep.setInt(8, Integer.parseInt(appartSingleroomFee.getText()));
+
             prep.execute();
 
-            con.close();
+            //con.close();
             //clears the textFields after Adding new Appartment
             appartName.setText(null);
             appartCountry.setText(null);
@@ -275,7 +288,6 @@ public class Controller implements Initializable {
 
     public void addNewUser() throws SQLException {
 
-        String query = "insert into RegUser values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         con = null;
         prep = null;
 
@@ -297,24 +309,27 @@ public class Controller implements Initializable {
 
         try {
 
-            con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
+            //con = DriverManager.getConnection("jdbc:sqlite:RRMSDataBase.db");
+            int phoneNo = Integer.parseInt(userPhonNo.getText());
+            String userFirstname = userFName.getText();
+            String roomNoschoosed = userRoomNo.getText();
+            int userRoomFee = Integer.parseInt(userFee.getText());
+            String entryDate = userStartDate.getValue().toString();
+            String stopDate = userEndDate.getValue().toString();
+
+
+            con = DBConnect.getConnected();
+
+            String query = "insert into Customers(firstName, lastName, email, phone, dateOfBirth, age, sex, appartment_name) values('" + userFName.getText() + "','" + userLName.getText() + "','" + userEmail.getText() + "'," + phoneNo + "," + userBirth.getValue().toString() + ", " + Integer.parseInt(userAge.getText()) + ",'" + gender + "', '" + appartmentChoosed + "'); ";
+
+
             prep = con.prepareStatement(query);
-            //inserts values to the DataBase from the Customer Registration form
-            prep.setString(1, userFName.getText());
-            prep.setString(2, userLName.getText());
-            prep.setString(3, userEmail.getText());
-            prep.setInt(4, Integer.parseInt(userPhonNo.getText()));
-            prep.setString(5, userBirth.getValue().toString());
-            prep.setInt(6, Integer.parseInt(userAge.getText()));
-            prep.setString(7, gender);
-            prep.setString(8, appartmentChoosed);
-            prep.setString(9, typesroom);
-            prep.setString(10, userRoomNo.getText());
-            prep.setInt(11, Integer.parseInt(userFee.getText()));
-            prep.setString(12, contract);
-            prep.setString(13, userStartDate.getValue().toString());
-            prep.setString(14, userEndDate.getValue().toString());
+
             prep.execute();
+            //  con.close();
+
+            frstQuery(typesroom, appartmentChoosed, userFirstname, roomNoschoosed, userRoomFee, contract, entryDate, stopDate);
+
 
             //clears the textFields after registering new customer
             userFName.setText(null);
@@ -330,7 +345,67 @@ public class Controller implements Initializable {
 
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+    }
+
+    // Tricky way of continuing inserting data to other tables from adding user method
+    public void frstQuery(String typesroom, String appartmentChoosed, String userFirstname, String roomNoschoosed, int userRoomFee, String contract, String entryDate, String stopDate) {
+        con = null;
+        prep = null;
+
+        try {
+            con = DBConnect.getConnected();
+
+            String query2 = "insert into Rooms(room_no, customer_id, roomType, roomFee, appartment_name) values('" + roomNoschoosed + "', (select customer_id from Customers where firstName='" + userFirstname + "'), '" + typesroom + "', " + userRoomFee + ", '" + appartmentChoosed + "');";
+
+            prep = con.prepareStatement(query2);
+            prep.execute();
+
+            scndQuery(contract, entryDate, stopDate, userFirstname);
+
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // Tricky way of continuing inserting data to other tables from adding user method
+    public void scndQuery(String contract, String entryDate, String stopDate, String userFirstname) {
+        con = null;
+        prep = null;
+
+        try {
+            con = DBConnect.getConnected();
+
+            String query3 = "insert into Contract(contractType, entryDate, expireDate, customer_id) values('" + contract + "', " + entryDate + ", " + stopDate + ",(select customer_id from Customers where firstName='" + userFirstname + "'));";
+
+            prep = con.prepareStatement(query3);
+            prep.execute();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

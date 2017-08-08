@@ -11,8 +11,8 @@ public class DBConnect {
 
     public static Connection getConnected() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         String dbName = "RRMSDataBase.db";
-        //if (con == null) {
-        if (createDB(dbName) && con == null) {
+        if (con == null) {
+            //if (createDB(dbName) && con == null) {
             Class.forName("org.sqlite.JDBC").newInstance();
             con = DriverManager.getConnection("jdbc:sqlite:" + dbName);
 
